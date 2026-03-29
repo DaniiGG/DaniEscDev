@@ -1,0 +1,26 @@
+/* App.css - Minimal styles, most styling is in index.css and Tailwind */
+
+.App {
+  min-height: 100vh;
+}
+
+/* Remove default link styles */
+.App-link {
+  color: #00f0ff;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /servicios
+Disallow: /
+Sitemap: https://daniescportfolio.web.app/sitemap.xml
