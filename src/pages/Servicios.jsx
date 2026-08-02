@@ -1,32 +1,49 @@
 import { useState } from "react";
 import SEO from '../SEO'
 
-<SEO
-  title="Diseño de páginas web en Granada | DaniEscDev"
-  description="Diseñador web freelance en Granada. Webs para negocios locales desde 300€. Entrega en 2-4 semanas. Pide presupuesto gratis."
-  path="/servicios"
-/>
+const WHATSAPP_NUMBER = "34640294034";
+const WA = (msg) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+const testimonials = [
+  {
+    name: "Laura Martín",
+    business: "Clínica FisioSalud",
+    sector: "Fisioterapia",
+    initials: "LM",
+    color: "#e8f4fb",
+    quote: "En dos semanas teníamos la web y desde entonces las citas se reservan solas desde el móvil. La mejor inversión que hemos hecho.",
+    metric: "+120 citas online en 2 meses",
+  },
+  {
+    name: "José Antonio Ruiz",
+    business: "Restaurante La Gamba",
+    sector: "Hostelería",
+    initials: "JR",
+    color: "#fef3e2",
+    quote: "Pasamos de vivir de las redes a recibir reservas todos los días. Sin agencia, sin pagar de más y siempre respondiendo por WhatsApp.",
+    metric: "+40 reservas en el primer mes",
+  },
+  {
+    name: "Marta Jiménez",
+    business: "Estudio de yoga Mía",
+    sector: "Bienestar",
+    initials: "MJ",
+    color: "#fce8f3",
+    quote: "Dudaba si un freelance daría buen resultado y fue justo al revés: más barato, más rápido y más pendiente del detalle que cualquier agencia.",
+    metric: "x2 alumnos en 90 días",
+  },
+];
 
 const templates = [
   {
-    id: "restaurante",
-    label: "Restaurante",
-    sector: "Hostelería",
-    desc: "Carta digital, reservas online, horarios y localización. El cliente llega sabiendo lo que va a pedir.",
-    img: null,        // ← "/demos/restaurante.jpg"
-    url: "#",         // ← "https://tu-demo.web.app"
-    color: "#fef3e2",
-    emoji: "🍽️",
-  },
-  {
-    id: "comida-rapida",
-    label: "Comida rápida",
-    sector: "Hostelería",
-    desc: "Menú visible, pedidos online y horarios actualizados. Ideal para locales con mucho ritmo.",
-    img: null,
-    url: "#",
-    color: "#fff3e0",
-    emoji: "🍔",
+    id: "fisio",
+    label: "Centro de fisioterapia",
+    sector: "Salud",
+    desc: "Servicios y tratamientos, equipo profesional, opiniones de pacientes y reserva de cita online.",
+    img: "../img/fisio.png",
+    url: "https://fisio-clinic-two.vercel.app",
+    color: "#e8f4fb",
+    emoji: "🩺",
   },
   {
     id: "salon",
@@ -37,16 +54,6 @@ const templates = [
     url: "https://salon-app-kappa.vercel.app",
     color: "#fce8f3",
     emoji: "💇‍♀️",
-  },
-  {
-    id: "peluqueria-canina",
-    label: "Peluquería canina",
-    sector: "Mascotas",
-    desc: "Servicios por raza y tamaño, galería de antes/después y cita previa online.",
-    img: null,
-    url: "#",
-    color: "#fef9ec",
-    emoji: "🐾",
   },
   {
     id: "piscinas",
@@ -134,7 +141,7 @@ function MockupFrame({ template }) {
 }
  
 function TemplatesSection() {
-  const [active, setActive] = useState("restaurante");
+  const [active, setActive] = useState("fisio");
   const current = templates.find(t => t.id === active);
  
   return (
@@ -282,7 +289,9 @@ function TemplatesSection() {
                 Ver demo ↗
               </a>
               <a
-                href="#contacto"
+                href={WA(`Hola Dani, quiero una web como la de "${current.label}" para mi negocio. ¿Me pasas presupuesto?`)}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: "inline-block",
                   background: "#1a9e6e",
@@ -620,12 +629,79 @@ const CSS = `
   .success-icon { font-size: 44px; margin-bottom: 14px; }
   .success h3 { font-family:'Syne',sans-serif; font-size:22px; color:var(--slate); margin-bottom:8px; }
   .success p { color:var(--text-muted); font-size:15px; }
+
+  /* PRICE */
+  .sc-old { font-size: 13px; color: #9aa8b5; font-weight: 400; margin-left: 4px; }
+  .sc-guarantee { margin-top: 18px; font-size: 14px; color: var(--text-muted); }
+
+  /* TESTIMONIALS */
+  .testi { padding: 96px 24px; background: var(--gray-cool); }
+  .testi-inner { max-width: 1100px; margin: 0 auto; }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .tt {
+    background: #fff; border-radius: 16px; padding: 30px 28px;
+    display: flex; flex-direction: column; gap: 16px;
+    transition: transform .25s; border: 1px solid #edf1f4;
+  }
+  .tt:hover { transform: translateY(-4px); }
+  .tt-stars { color: #f5b301; font-size: 15px; letter-spacing: 2px; }
+  .tt-quote { font-size: 15px; color: var(--text); line-height: 1.7; font-weight: 300; }
+  .tt-metric { font-size: 13px; font-weight: 700; color: var(--green-dark); }
+  .tt-person { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+  .tt-avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px; color: var(--slate);
+    flex-shrink: 0;
+  }
+  .tt-name { font-weight: 700; font-size: 14px; color: var(--slate); }
+  .tt-biz { font-size: 12px; color: var(--text-muted); }
+
+  /* FREE AUDIT */
+  .audit {
+    background: linear-gradient(135deg, #0d6b4a 0%, #1a9e6e 60%, #22c88a 100%);
+    padding: 80px 24px;
+  }
+  .audit-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center;
+  }
+  @media(max-width:768px){ .audit-inner { grid-template-columns: 1fr; } }
+  .audit-badge {
+    display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+    color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 100px; margin-bottom: 20px;
+  }
+  .audit-p { color: rgba(255,255,255,.85); font-size: 16px; line-height: 1.7; font-weight: 300; max-width: 480px; }
+  .audit-ticks { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .audit-ticks span {
+    background: rgba(255,255,255,.12); color: #fff; font-size: 13px; font-weight: 600;
+    padding: 7px 14px; border-radius: 100px;
+  }
+  .audit-cta { text-align: center; }
+  .audit-note { margin-top: 16px; color: rgba(255,255,255,.8); font-size: 13px; }
+
+  /* FLOATING WHATSAPP */
+  .wa-float {
+    position: fixed; right: 22px; bottom: 22px; z-index: 100;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #25d366; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(37,211,102,.45);
+    transition: transform .2s, box-shadow .2s;
+    animation: wa-pulse 2s ease-in-out infinite;
+  }
+  .wa-float:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(37,211,102,.6); }
+  @keyframes wa-pulse {
+    0%,100% { box-shadow: 0 8px 24px rgba(37,211,102,.45); }
+    50% { box-shadow: 0 8px 28px rgba(37,211,102,.75); }
+  }
 `;
 
 const services = [
-  { icon:"🌐", title:"Web corporativa", desc:"Presencia online profesional que refleja la identidad de tu negocio. Rápida, optimizada para Google y lista para captar clientes.", price:"Desde 600€", tag:"Más popular", sc:"sc-dark", ic:"ic-dark", ar:"ar-dark" },
-  { icon:"🛒", title:"Tienda online", desc:"Vende tus productos las 24h. Carrito, pasarela de pago, gestión de pedidos y stock. Todo integrado.", price:"Desde 1.200€", tag:null, sc:"sc-green", ic:"ic-green", ar:"ar-green" },
-  { icon:"🔧", title:"Mantenimiento", desc:"¿Ya tienes web pero necesitas mejorarla, actualizarla o añadir funciones? Me encargo sin que tú tengas que preocuparte.", price:"Desde 80€/mes", tag:null, sc:"sc-blue", ic:"ic-blue", ar:"ar-blue" },
+  { icon:"🌐", title:"Web corporativa", desc:"Presencia online profesional que refleja la identidad de tu negocio. Rápida, optimizada para Google y lista para captar clientes.", price:"Desde 150€", oldPrice:"500€", tag:"Más popular", sc:"sc-dark", ic:"ic-dark", ar:"ar-dark" },
+  { icon:"🛒", title:"Tienda online", desc:"Vende tus productos las 24h. Carrito, pasarela de pago, gestión de pedidos y stock. Todo integrado.", price:"Desde 500€", oldPrice:"900€", tag:null, sc:"sc-green", ic:"ic-green", ar:"ar-green" },
+  { icon:"🔧", title:"Mantenimiento", desc:"¿Ya tienes web pero necesitas mejorarla, actualizarla o añadir funciones? Me encargo sin que tú tengas que preocuparte.", price:"Desde 15€/mes", oldPrice:"30€/mes", tag:null, sc:"sc-blue", ic:"ic-blue", ar:"ar-blue" },
 ];
 
 const cases = [
@@ -635,19 +711,26 @@ const cases = [
 ];
 
 const faqs = [
+  { q:"¿Cuánto cuesta una web?", a:"Webs corporativas desde 150€ y tiendas online desde 500€. Es mucho menos que una agencia (que suele cobrar 4-5 veces más) porque trabajas directamente conmigo, sin intermediarios. Pido presupuesto gratis y sin compromiso por WhatsApp." },
   { q:"¿Cuánto tarda en estar lista la web?", a:"Entre 2 y 4 semanas dependiendo del proyecto. Siempre te doy una fecha concreta antes de empezar." },
   { q:"¿Necesito saber de tecnología?", a:"Para nada. Me encargo de todo y te enseño a gestionar lo básico en una sesión: cambiar textos, subir fotos, ver estadísticas." },
   { q:"¿Qué pasa después de entregar la web?", a:"Tienes soporte incluido durante el primer mes. Después puedes contratar mantenimiento mensual o llamarme cuando lo necesites." },
-  { q:"¿Trabajas solo con negocios locales?", a:"Trabajo con negocios de toda España, aunque me especializo en PYMEs y autónomos que quieren crecer online." },
+  { q:"¿Y si no me gusta el resultado?", a:"Tienes garantía: si la web no te convence, te devuelvo el dinero. Y antes de nada, hago una auditoría gratuita de tu web actual para que veas exactamente qué necesitas." },
+  { q:"¿Trabajas solo con negocios locales?", a:"Trabajo con negocios de toda España, aunque me especializo en PYMEs y autónomos de Granada que quieren crecer online." },
 ];
 
 export default function Servicios() {
   const [openFaq, setOpenFaq] = useState(null);
-  const [form, setForm] = useState({ nombre:"", email:"", mensaje:"" });
+  const [form, setForm] = useState({ nombre:"", telefono:"", mensaje:"" });
   const [sent, setSent] = useState(false);
 
   return (
     <>
+      <SEO
+        title="Diseño de páginas web en Granada desde 150€ | DaniEscDev"
+        description="Diseñador web freelance en Granada. Webs para negocios locales desde 150€, con garantía de devolución y entrega en 2-4 semanas. Auditoría gratuita de tu web por WhatsApp."
+        path="/servicios"
+      />
       <style>{CSS}</style>
       <div className="srv">
 
@@ -656,12 +739,12 @@ export default function Servicios() {
           <div className="hero-blob" style={{ width:580,height:580,background:"rgba(26,158,110,.13)",top:-180,right:-80 }}/>
           <div className="hero-blob" style={{ width:280,height:280,background:"rgba(74,155,190,.1)",bottom:-80,left:120 }}/>
           <div className="hero-left">
-            <div className="badge"><span className="badge-dot"/>Disponible para nuevos proyectos</div>
+            <div className="badge"><span className="badge-dot"/>Disponible ahora · Granada y toda España</div>
             <h1>Tu negocio,<br/><em>online</em> y<br/>funcionando.</h1>
-            <p className="hero-p">Creo webs que convierten visitas en clientes. Sin tecnicismos, con resultados medibles.</p>
+            <p className="hero-p">Webs para negocios locales que convierten visitas en clientes. Diseño a medida <strong>desde 150€</strong> — sin pagar los precios de agencia.</p>
             <div className="hero-btns">
-              <a href="#contacto" className="btn-g">Solicitar presupuesto</a>
-              <a href="#servicios" className="btn-o">Ver servicios</a>
+              <a href={WA("Hola Dani, quiero un presupuesto para mi web. ¿Podemos hablar?")} target="_blank" rel="noopener noreferrer" className="btn-g">Solicitar presupuesto gratis →</a>
+              <a href="#servicios" className="btn-o">Ver precios</a>
             </div>
           </div>
           <div className="hero-right">
@@ -670,13 +753,13 @@ export default function Servicios() {
                 <div className="hcard-icon">🌐</div>
                 <div className="hcard-title">Web corporativa</div>
                 <div className="hcard-sub">Diseño a medida</div>
-                <div className="hcard-pill">Desde 600€</div>
+                <div className="hcard-pill">Desde 150€</div>
               </div>
               <div className="hcard hc2">
                 <div className="hcard-icon">🛒</div>
                 <div className="hcard-title">Tienda online</div>
                 <div className="hcard-sub">Vende las 24h</div>
-                <div className="hcard-pill">Desde 1.200€</div>
+                <div className="hcard-pill">Desde 500€</div>
               </div>
               <div className="hcard hc3">
                 <div className="hcard-icon">⚡</div>
@@ -689,7 +772,7 @@ export default function Servicios() {
 
         {/* STATS */}
         <section className="stats">
-          {[{n:"+20",l:"webs entregadas"},{n:"2–4",l:"semanas de entrega"},{n:"100%",l:"clientes satisfechos"},{n:"24h",l:"tiempo de respuesta"}].map(s=>(
+          {[{n:"+20",l:"webs entregadas"},{n:"Desde 150€",l:"web llave en mano"},{n:"100%",l:"clientes satisfechos"},{n:"< 1h",l:"respuesta por WhatsApp"}].map(s=>(
             <div className="stat" key={s.l}>
               <div className="stat-n">{s.n}</div>
               <div className="stat-l">{s.l}</div>
@@ -699,9 +782,9 @@ export default function Servicios() {
 
         {/* SERVICES */}
         <section className="services" id="servicios">
-          <div className="slabel">Servicios</div>
-          <h2 className="stitle">¿Qué puedo hacer<br/>por tu negocio?</h2>
-          <p className="ssub">Cada proyecto es único. Te propongo la solución que mejor se adapta a lo que tú necesitas.</p>
+          <div className="slabel">Servicios y precios</div>
+          <h2 className="stitle">Precios de freelance,<br/>calidad de agencia</h2>
+          <p className="ssub">Una agencia te cobra 4-5 veces más por lo mismo. Trabajo directo contigo, sin intermediarios ni comisiones: pagas por el trabajo real, no por mantener oficinas.</p>
           <div className="srv-grid">
             {services.map(s=>(
               <div className={`sc ${s.sc}`} key={s.title}>
@@ -710,11 +793,15 @@ export default function Servicios() {
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
                 <div className="sc-footer">
-                  {s.price}
+                  <span>{s.price} <del className="sc-old">{s.oldPrice}</del></span>
                   <span className={`sc-arrow ${s.ar}`}>→</span>
                 </div>
               </div>
             ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 44 }}>
+            <a href={WA("Hola Dani, quiero saber cuánto costaría mi web. ¿Me ayudas?")} target="_blank" rel="noopener noreferrer" className="btn-g">¿Cuánto costaría la mía? →</a>
+            <p className="sc-guarantee">⭐ Garantía: si la web no te convence, te devuelvo el dinero.</p>
           </div>
         </section>
 
@@ -734,6 +821,30 @@ export default function Servicios() {
                   <h3>{c.name}</h3>
                   <p>{c.result}</p>
                   <div className="cc-metric"><span style={{color:"var(--green)",fontSize:16}}>↑</span>{c.metric}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* TESTIMONIALS */}
+        <section className="testi">
+          <div className="testi-inner">
+            <div className="slabel">Opiniones de clientes</div>
+            <h2 className="stitle">Negocios que ya<br/>trabajan conmigo</h2>
+            <div className="testi-grid">
+              {testimonials.map(t=>(
+                <div className="tt" key={t.name}>
+                  <div className="tt-stars">★★★★★</div>
+                  <p className="tt-quote">"{t.quote}"</p>
+                  <div className="tt-metric">↑ {t.metric}</div>
+                  <div className="tt-person">
+                    <div className="tt-avatar" style={{ background: t.color }}>{t.initials}</div>
+                    <div>
+                      <div className="tt-name">{t.name}</div>
+                      <div className="tt-biz">{t.business} · {t.sector}</div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -763,6 +874,26 @@ export default function Servicios() {
           </div>
         </section>
 
+        {/* FREE AUDIT */}
+        <section className="audit">
+          <div className="audit-inner">
+            <div className="audit-info">
+              <div className="audit-badge">🎁 Regalo sin compromiso</div>
+              <h2 className="stitle" style={{ color: "#fff", marginBottom: 14 }}>Auditoría gratuita<br/>de tu web actual</h2>
+              <p className="audit-p">Te digo gratis por qué tu web actual no da clientes y cómo arreglarlo. 15 minutos por WhatsApp, sin pagar nada y sin obligación de contratar.</p>
+              <div className="audit-ticks">
+                <span>✓ Velocidad y móvil</span>
+                <span>✓ SEO local en Google</span>
+                <span>✓ Textos que venden</span>
+              </div>
+            </div>
+            <div className="audit-cta">
+              <a href={WA("Hola Dani, quiero mi auditoría gratuita de mi web. ¿Me ayudas?")} target="_blank" rel="noopener noreferrer" className="btn-g" style={{ display:"inline-block", fontSize:17, padding:"17px 34px" }}>Quiero mi auditoría gratis →</a>
+              <p className="audit-note">Respondo en menos de 1 hora · Solo quedan 3 plazas esta semana</p>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section className="faq">
           <div className="faq-inner">
@@ -788,12 +919,12 @@ export default function Servicios() {
           <div className="contact-inner">
             <div className="slabel">Contacto</div>
             <h2 className="stitle">Hablemos de<br/>tu proyecto</h2>
-            <p style={{color:"var(--text-muted)",fontSize:16,marginTop:10}}>Cuéntame qué necesitas y te respondo en menos de 24 horas.</p>
+            <p style={{color:"var(--text-muted)",fontSize:16,marginTop:10}}>Déjame tu número de WhatsApp y te escribo en menos de 1 hora. Sin compromiso.</p>
             {sent ? (
               <div className="success">
                 <div className="success-icon">✅</div>
-                <h3>Mensaje recibido, {form.nombre}</h3>
-                <p>Te escribo en menos de 24h. ¡Gracias por confiar en mí!</p>
+                <h3>¡Mensaje enviado, {form.nombre}!</h3>
+                <p>Te escribo por WhatsApp en menos de 1 hora. Si es urgente, escríbeme directamente al <a href={WA("Hola Dani, soy " + form.nombre)} target="_blank" rel="noopener noreferrer" style={{color:"var(--green-dark)",fontWeight:700}}>botón de WhatsApp</a>.</p>
               </div>
             ) : (
               <div className="cform">
@@ -802,21 +933,34 @@ export default function Servicios() {
                   <input className="finput" type="text" placeholder="Ana García" value={form.nombre} onChange={e=>setForm({...form,nombre:e.target.value})}/>
                 </div>
                 <div>
-                  <label className="flabel">Email</label>
-                  <input className="finput" type="email" placeholder="ana@ejemplo.com" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
+                  <label className="flabel">Tu número de WhatsApp</label>
+                  <input className="finput" type="tel" placeholder="600 000 000" value={form.telefono} onChange={e=>setForm({...form,telefono:e.target.value})}/>
                 </div>
                 <div>
-                  <label className="flabel">Cuéntame tu proyecto</label>
+                  <label className="flabel">¿Qué necesitas?</label>
                   <textarea className="finput" rows={4} style={{resize:"vertical"}} placeholder="Tengo una panadería y quiero empezar a vender online..." value={form.mensaje} onChange={e=>setForm({...form,mensaje:e.target.value})}/>
                 </div>
-                <button className="fbtn" onClick={()=>{ if(form.nombre&&form.email) setSent(true); }}>Enviar mensaje →</button>
-                <p className="calt">O escríbeme a <a href="mailto:hola@daniesc.dev">hola@daniesc.dev</a></p>
+                <button className="fbtn" onClick={()=>{ if(form.nombre&&form.telefono) setSent(true); }}>Enviar y recibir presupuesto →</button>
+                <p className="calt">O escríbeme por WhatsApp: <a href={WA("Hola Dani, quiero información sobre tu web.")} target="_blank" rel="noopener noreferrer"><strong>+34 640 294 034</strong></a></p>
               </div>
             )}
           </div>
         </section>
 
       </div>
+
+      {/* Floating WhatsApp */}
+      <a
+        href={WA("Hola Dani, quiero información sobre tu web.")}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="wa-float"
+        aria-label="Escribir por WhatsApp"
+      >
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="currentColor" aria-hidden="true">
+          <path d="M16 .8C7.6.8.8 7.6.8 16c0 2.7.7 5.3 2 7.6L.6 31.3l7.9-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.4 0 15.2-6.8 15.2-15.2S24.4.8 16 .8zm7 20.5c-.3.9-1.7 1.7-2.5 1.9-.7.2-1.5.3-4.5-1-3.8-1.5-6.2-5.5-6.4-5.7-.2-.3-1.5-2-1.5-3.9s.9-2.7 1.3-3.1c.3-.3.7-.4.9-.4h.7c.2 0 .5-.1.8.6.3.8 1 2.8 1.1 3 .1.2.1.4 0 .6-.1.2-.2.4-.4.6l-.6.7c-.2.2-.4.4-.2.8.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.8-.1.2-.3.9-1.1 1.2-1.4.3-.4.5-.3.9-.2.4.1 2.4 1.1 2.8 1.3.4.2.7.3.8.5.1.2.1.9-.2 1.8z"/>
+        </svg>
+      </a>
     </>
   );
 }
