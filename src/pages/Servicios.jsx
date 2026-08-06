@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SEO from '../SEO'
 
 const WHATSAPP_NUMBER = "34640294034";
@@ -145,7 +145,7 @@ function TemplatesSection() {
   const current = templates.find(t => t.id === active);
  
   return (
-    <section style={{ padding: "96px 24px", background: "#fff" }}>
+    <section id="ejemplos" style={{ padding: "96px 24px", background: "#fff" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div className="slabel">Ejemplos reales</div>
         <h2 className="stitle">¿Tu negocio podría<br />tener algo así?</h2>
@@ -179,12 +179,7 @@ function TemplatesSection() {
         </div>
  
         {/* Contenido */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 48,
-          alignItems: "center",
-        }}>
+        <div className="template-grid">
           {/* Mockup izquierda */}
           <MockupFrame template={current} />
  
@@ -317,6 +312,62 @@ function TemplatesSection() {
   );
 }
 
+function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const links = [
+    { label: "Servicios", href: "#servicios" },
+    { label: "Precios", href: "#servicios" },
+    { label: "Ejemplos", href: "#ejemplos" },
+    { label: "Opiniones", href: "#opiniones" },
+    { label: "FAQ", href: "#faq" },
+    { label: "Contacto", href: "#contacto" },
+  ];
+
+  const close = () => setOpen(false);
+
+  return (
+    <nav className={`srv-nav${scrolled ? " scrolled" : ""}${open ? " open" : ""}`}>
+      <div className="srv-nav-inner">
+        <a href="#hero" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); close(); }} className="srv-nav-logo">
+          <img src="../img/descarga.png" alt="DaniEscDev" />
+          <span>Dani<span>Esc</span>Dev</span>
+        </a>
+
+        <div className="srv-nav-right">
+          <div className="srv-nav-links">
+            {links.map(l => (
+              <a key={l.label} href={l.href} onClick={close}>{l.label}</a>
+            ))}
+          </div>
+
+          <a href={WA("Hola Dani, quiero presupuesto para mi web.")} target="_blank" rel="noopener noreferrer" className="srv-nav-cta">Presupuesto gratis</a>
+        </div>
+
+        <button className="srv-nav-burger" onClick={() => setOpen(!open)} aria-label="Menú">
+          {open ? "✕" : "☰"}
+        </button>
+      </div>
+
+      {open && (
+        <div className="srv-nav-mobile">
+          {links.map(l => (
+            <a key={l.label} href={l.href} onClick={close}>{l.label}</a>
+          ))}
+          <a href={WA("Hola Dani, quiero presupuesto para mi web.")} target="_blank" rel="noopener noreferrer" className="srv-nav-cta" onClick={close}>Presupuesto gratis</a>
+        </div>
+      )}
+    </nav>
+  );
+}
+
 const CSS = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&family=Syne:wght@700;800&display=swap');
 
@@ -337,6 +388,64 @@ const CSS = `
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* NAVBAR */
+  .srv-nav {
+    position: sticky; top: 0; z-index: 90;
+    background: rgba(255,255,255,.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e6ecef;
+    transition: background .2s, box-shadow .2s;
+  }
+  .srv-nav.scrolled { box-shadow: 0 8px 30px rgba(20,50,40,.08); }
+  .srv-nav-inner {
+    max-width: 1100px; margin: 0 auto; padding: 12px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  }
+  .srv-nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 17px; color: var(--slate);
+    flex-shrink: 0;
+  }
+  .srv-nav-logo img {
+    width: 50px; height: 50px;;
+    object-fit: cover; 
+  }
+  .srv-nav-logo span span { color: var(--green); }
+  .srv-nav-right { display: flex; align-items: center; gap: 16px; margin-left: auto; }
+  .srv-nav-links { display: flex; align-items: center; gap: 4px; }
+  .srv-nav-links a {
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    color: var(--slate-mid); padding: 8px 13px; border-radius: 8px;
+    transition: background .15s, color .15s;
+  }
+  .srv-nav-links a:hover { background: var(--green-pale); color: var(--green-dark); }
+  .srv-nav-cta {
+    text-decoration: none; background: var(--green); color: #fff;
+    font-size: 14px; font-weight: 700; padding: 11px 20px;
+    border-radius: 8px; flex-shrink: 0; transition: background .15s;
+  }
+  .srv-nav-cta:hover { background: var(--green-dark); }
+  .srv-nav-burger {
+    display: none; background: none; border: none; cursor: pointer;
+    font-size: 24px; color: var(--slate); line-height: 1;
+  }
+  .srv-nav-mobile {
+    display: none; flex-direction: column; padding: 12px 24px 20px; gap: 4px;
+  }
+  .srv-nav-mobile a {
+    text-decoration: none; font-size: 16px; font-weight: 500;
+    color: var(--slate-mid); padding: 12px 8px; border-radius: 8px;
+  }
+  .srv-nav-mobile a:hover { background: var(--green-pale); color: var(--green-dark); }
+  .srv-nav-mobile .srv-nav-cta { margin-top: 10px; text-align: center; }
+  @media(max-width: 860px){
+    .srv-nav-right { display: none; }
+    .srv-nav-burger { display: block; }
+    .srv-nav.open .srv-nav-mobile { display: flex; }
+    .srv-nav-mobile a { display: block; }
+  }
 
   .srv { font-family: 'DM Sans', sans-serif; color: var(--text); background: #fff; overflow-x: hidden; }
 
@@ -457,6 +566,21 @@ const CSS = `
   .stat:last-child { border-right: none; }
   .stat-n { font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; line-height: 1; margin-bottom: 6px; }
   .stat-l { font-size: 13px; color: rgba(255,255,255,.7); }
+  @media(max-width:768px){
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat-n { font-size: 28px; }
+  }
+
+  /* TEMPLATES */
+  .template-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media(max-width:768px){
+    .template-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
 
   /* SECTION COMMON */
   .slabel { font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--green); margin-bottom: 14px; }
@@ -733,6 +857,7 @@ export default function Servicios() {
       />
       <style>{CSS}</style>
       <div className="srv">
+        <Navbar />
 
         {/* HERO */}
         <section className="hero">
@@ -810,7 +935,7 @@ export default function Servicios() {
 
         {/* CASES */}
         <section className="cases">
-          <div className="cases-blob"/>
+          <div className="contact-geo" style={{width:380,height:380,background:"rgba(26,158,110,.1)",top:-140,right:-140}}/>
           <div className="cases-inner">
             <div className="slabel">Casos de éxito</div>
             <h2 className="stitle">Negocios que ya<br/>crecen online</h2>
@@ -828,7 +953,7 @@ export default function Servicios() {
         </section>
 
         {/* TESTIMONIALS */}
-        <section className="testi">
+        <section className="testi" id="opiniones">
           <div className="testi-inner">
             <div className="slabel">Opiniones de clientes</div>
             <h2 className="stitle">Negocios que ya<br/>trabajan conmigo</h2>
@@ -895,7 +1020,7 @@ export default function Servicios() {
         </section>
 
         {/* FAQ */}
-        <section className="faq">
+        <section className="faq" id="faq">
           <div className="faq-inner">
             <div className="slabel">FAQ</div>
             <h2 className="stitle">Preguntas frecuentes</h2>
