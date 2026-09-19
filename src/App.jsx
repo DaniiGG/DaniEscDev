@@ -10,13 +10,16 @@ import Footer from './components/Footer';
 import Servicios from './pages/Servicios';
 import SEO from './SEO';
 import { Routes, Route } from 'react-router-dom';
+import { useTranslation } from './hooks/useTranslation';
 
 function HomePage() {
+  const { t } = useTranslation();
+  
   return (
     <>
       <SEO
-        title="Portfolio — DaniEscDev"
-        description="Portfolio de desarrollo web de DaniEscDev."
+        title={t('seo.title')}
+        description={t('seo.description')}
         path="/"
         noindex={true}
       />

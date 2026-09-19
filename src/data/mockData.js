@@ -30,18 +30,30 @@ export const skills = [
 export const projects = [
   {
     id: 1,
-    title: "Lol Roulette",
+    title: "Julio Guerrero",
+    description: "Página web portfolio de fotografía para Julio Guerrero (Granada).",
+    image: "../img/julioguerrero.png",
+    tags: ["React", "TypeScript", "Firebase"],
+    github: "https://github.com/DaniiGG/julioportfolio",
+    demo: "https://julioportfolio-27fe9.web.app",
+    featured: false,
+    in_process: false,
+    color: "#fdfdfd"
+  },
+  {
+    id: 2,
+    title: "League Roulette",
     description: "Página web dedicada al entretenimiento usando la api de Riot de League of Legends.",
-    image: "../img/LolRoulette.png",
+    image: "../img/leagueroulette.png",
     tags: ["Next.js", "TypeScript", "Supabase"],
     github: "https://github.com/DaniiGG/Lol-Roulette",
-    demo: "https://lol-roulette-nine.vercel.app",
+    demo: "https://leagueroulette.com",
     featured: false,
     in_process: true,
     color: "#ffea00"
   },
   {
-    id: 2,
+    id: 3,
     title: "CalTrack",
     description: "Plataforma dedicada al control de entrenamientos, especialmente calisténicos.",
     image: "../img/CalTrack.png",
@@ -53,7 +65,7 @@ export const projects = [
     color: "#00f0ff"
   },
   {
-    id: 3,
+    id: 4,
     title: "Club Atletismo Maracena",
     description: "Página web del club de atletismo de Maracena, noticias, galería, inscripciones, administración...",
     image: "../img/AtleMaracena.png",
@@ -65,7 +77,7 @@ export const projects = [
     color: "#ff00ff"
   },
   {
-    id: 4,
+    id: 5,
     title: "Ferreramos",
     description: "Web de ferreteria Ferreramos realizada en prácticas en Area Binaria.",
     image: "../img/Ferreramos.png",
@@ -77,7 +89,7 @@ export const projects = [
     color: "#00ff88"
   },
   {
-    id: 5,
+    id: 6,
     title: "EasyOrder",
     description: "Aplicación móvil para gestionar pedidos y comandas en un restaurante de forma rápida y sencilla.",
     image: "../img/EasyOrder.png",

@@ -865,7 +865,7 @@ export default function Servicios() {
           <div className="hero-blob" style={{ width:280,height:280,background:"rgba(74,155,190,.1)",bottom:-80,left:120 }}/>
           <div className="hero-left">
             <div className="badge"><span className="badge-dot"/>Disponible ahora · Granada y toda España</div>
-            <h1>Tu negocio,<br/><em>online</em> y<br/>funcionando.</h1>
+            <h1>Tu negocio,<br/><em>online</em> y<br/> a otro nivel.</h1>
             <p className="hero-p">Webs para negocios locales que convierten visitas en clientes. Diseño a medida <strong>desde 150€</strong> — sin pagar los precios de agencia.</p>
             <div className="hero-btns">
               <a href={WA("Hola Dani, quiero un presupuesto para mi web. ¿Podemos hablar?")} target="_blank" rel="noopener noreferrer" className="btn-g">Solicitar presupuesto gratis →</a>

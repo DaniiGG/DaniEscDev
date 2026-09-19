@@ -1,0 +1,213 @@
+{
+  "common": {
+    "nav": {
+      "home": "Inicio",
+      "about": "Sobre mí",
+      "projects": "Proyectos",
+      "skills": "Skills",
+      "contact": "Contacto"
+    },
+    "cta": {
+      "letsTalk": "Hablemos",
+      "contactMe": "Contactar",
+      "viewProjects": "Ver Proyectos",
+      "viewMoreGitHub": "Ver más en GitHub",
+      "sendMessage": "Enviar mensaje",
+      "sending": "Enviando...",
+      "sent": "¡Mensaje enviado!"
+    },
+    "status": {
+      "available": "Disponible para proyectos",
+      "freelance": "Disponible para freelance",
+      "collaborations": "Abierto a colaboraciones",
+      "responseTime": "Respuesta en <24h",
+      "inProcess": "En Proceso",
+      "featured": "Cooperativo"
+    },
+    "footer": {
+      "madeWith": "Hecho con",
+      "andCoffee": "y mucho café",
+      "backToTop": "Volver arriba",
+      "rights": "© {year} {name}."
+    },
+    "filter": {
+      "all": "Todos",
+      "featured": "Cooperativo",
+      "inProcess": "En Proceso"
+    },
+    "labels": {
+      "name": "Nombre",
+      "email": "Email",
+      "message": "Mensaje",
+      "placeholder": {
+        "name": "Tu nombre",
+        "email": "tu@email.com",
+        "message": "Cuéntame sobre tu proyecto..."
+      }
+    },
+    "form": {
+      "note": "* Respondo en menos de 24 horas"
+    },
+    "scroll": "Scroll"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "roles": [
+      "Full Stack Developer",
+      "React Specialist",
+      "Cloud Architect",
+      "UI/UX Enthusiast"
+    ],
+    "description": "{subtitle}. Transformo ideas en experiencias digitales {extraordinary} con código limpio y {cuttingEdge}.",
+    "extraordinary": "extraordinarias",
+    "cuttingEdge": "tecnología de vanguardia",
+    "terminal": {
+      "comment": "// Developer Profile",
+      "const": "const",
+      "developer": "developer",
+      "equals": "=",
+      "braceOpen": "{",
+      "name": "name",
+      "role": "role",
+      "location": "location",
+      "skills": "skills",
+      "available": "available",
+      "colon": ":",
+      "comma": ",",
+      "bracketOpen": "[",
+      "bracketClose": "]",
+      "braceClose": "}",
+      "semicolon": ";",
+      "ready": "▶ Ready to build amazing things...",
+      "true": "true"
+    }
+  },
+  "about": {
+    "sectionTitle": "Sobre <span className=\"gradient\">Mí</span>",
+    "description": "Conoce mi historia, pasión por el código y experiencia profesional",
+    "experienceTitle": "Experiencia Profesional",
+    "philosophy": {
+      "comment": "/** Mi filosofía de código */",
+      "code": "const philosophy = \"Código limpio, usuario feliz\";",
+      "approach": "const approach = \"Primero resolver, luego optimizar\";",
+      "learning": "const learning = Infinity;"
+    },
+    "funFacts": {
+      "coffee": "Cafés/día",
+      "projects": "Proyectos",
+      "passion": "Pasión"
+    }
+  },
+  "projects": {
+    "sectionTitle": "Mis <span className=\"gradient\">Proyectos</span>",
+    "description": "Una selección de proyectos que demuestran mi pasión por crear soluciones innovadoras",
+    "filterLabel": "Filter"
+  },
+  "skills": {
+    "sectionTitle": "Tech <span className=\"gradient\">Stack</span>",
+    "description": "Tecnologías y herramientas que domino para crear soluciones excepcionales",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "devops": "DevOps"
+    },
+    "categoryDescriptions": {
+      "frontend": "Interfaces modernas y responsivas",
+      "backend": "APIs robustas y escalables",
+      "devops": "Infraestructura y automatización"
+    },
+    "learning": "// Siempre aprendiendo nuevas tecnologías",
+    "skillsCount": "skills"
+  },
+  "contact": {
+    "sectionTitle": "Hablemos de tu <span className=\"gradient\">Proyecto</span>",
+    "description": "¿Tienes una idea increíble? Me encantaría escucharla y ayudarte a hacerla realidad",
+    "contactInfo": {
+      "email": "Email",
+      "location": "Ubicación"
+    },
+    "socialTitle": "// Sígueme en",
+    "statusTitle": "$ current_status",
+    "formTitle": "Envíame un mensaje"
+  },
+  "seo": {
+    "title": "Portfolio — DaniEscDev",
+    "description": "Portfolio de desarrollo web de DaniEscDev.",
+    "ogLocale": "es_ES",
+    "geoRegion": "ES-GR",
+    "geoPlacename": "Granada",
+    "businessName": "DaniEscDev — Diseño Web Granada",
+    "telephone": "+34 640 294 034",
+    "addressLocality": "Granada",
+    "addressRegion": "Andalucía",
+    "addressCountry": "ES",
+    "areaServed": "Granada",
+    "priceRange": "€€"
+  },
+  "profile": {
+    "name": "Daniel Escobar",
+    "title": "Full Stack Developer",
+    "subtitle": "Building the future, one line of code at a time",
+    "bio": "Desarrollador apasionado con 2+ años de experiencia creando aplicaciones web innovadoras. Especializado en React, Laravel.js y arquitecturas cloud. Me encanta transformar ideas complejas en soluciones elegantes y escalables.",
+    "location": "Granada, España",
+    "email": "daniescomoli@gmail.com"
+  },
+  "stats": {
+    "experience": "Años de Experiencia",
+    "projects": "Proyectos Completados",
+    "clients": "Clientes Satisfechos",
+    "codeLines": "Líneas de Código"
+  },
+  "experiences": [
+    {
+      "company": "Area binaria",
+      "role": "Full Stack Developer",
+      "period": "Mar 2024 - Jun 2024",
+      "description": "Desarrollo de módulos personalizados para E-commerce y mantenimiento de plantillas corporativas"
+    },
+    {
+      "company": "Enneo Ingeniería",
+      "role": "Full Stack Developer",
+      "period": "Mar 2025 - Jun 2025",
+      "description": "Desarrollo de una aplicación web de seguimiento de trámites en Laravel + React, mejorando la trazabilidad y comunicación con clientes."
+    },
+    {
+      "company": "Freelance",
+      "role": "Full Stack Developer",
+      "period": "2024 - Actualidad",
+      "description": "Desarrollo, mantenimiento de aplicaciones web personalizadas y automatizaciones para clientes particulares y pequeñas empresas"
+    }
+  ],
+  "projectsData": [
+    {
+      "id": 1,
+      "title": "Lol Roulette",
+      "description": "Página web dedicada al entretenimiento usando la api de Riot de League of Legends.",
+      "tags": ["Next.js", "TypeScript", "Supabase"]
+    },
+    {
+      "id": 2,
+      "title": "CalTrack",
+      "description": "Plataforma dedicada al control de entrenamientos, especialmente calisténicos.",
+      "tags": ["React Native", "TypeScript", "Firebase"]
+    },
+    {
+      "id": 3,
+      "title": "Club Atletismo Maracena",
+      "description": "Página web del club de atletismo de Maracena, noticias, galería, inscripciones, administración...",
+      "tags": ["React", "TypeScript", "Firebase", "Google Analytics"]
+    },
+    {
+      "id": 4,
+      "title": "Ferreramos",
+      "description": "Web de ferreteria Ferreramos realizada en prácticas en Area Binaria.",
+      "tags": ["Prestashop", "Nginx", "MySql", "Google Analytics"]
+    },
+    {
+      "id": 5,
+      "title": "EasyOrder",
+      "description": "Aplicación móvil para gestionar pedidos y comandas en un restaurante de forma rápida y sencilla.",
+      "tags": ["React Native", "Typescript", "Firebase"]
+    }
+  ]
+}

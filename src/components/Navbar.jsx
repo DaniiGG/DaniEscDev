@@ -1,35 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Terminal, Github, Linkedin, Twitter } from 'lucide-react';
+import { Menu, X, Terminal, Github, Linkedin, Twitter, Globe } from 'lucide-react';
 import { profileData } from '../data/mockData';
-
-const navLinks = [
-  { name: 'Inicio', href: '#hero' },
-  { name: 'Sobre mí', href: '#about' },
-  { name: 'Proyectos', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Contacto', href: '#contact' },
-];
+import { useTranslation } from '../hooks/useTranslation';
 
 const Navbar = () => {
+  const { t, i18n, changeLanguage } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
     setIsMobileMenuOpen(false);
   };
+
+  const toggleLanguage = () => {
+    changeLanguage(i18n.language === 'es' ? 'en' : 'es');
+  };
+
+  const navLinks = [
+    { name: t('common.nav.home'), href: '#hero' },
+    { name: t('common.nav.about'), href: '#about' },
+    { name: t('common.nav.projects'), href: '#projects' },
+    { name: t('common.nav.skills'), href: '#skills' },
+    { name: t('common.nav.contact'), href: '#contact' },
+  ];
 
   return (
     <>
@@ -46,10 +48,7 @@ const Navbar = () => {
             {/* Logo */}
             <motion.a
               href="#hero"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('#hero');
-              }}
+              onClick={(e) => { e.preventDefault(); scrollToSection('#hero'); }}
               className="flex items-center gap-2 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -60,9 +59,9 @@ const Navbar = () => {
                 </div>
               </div>
               <span className="font-mono text-lg font-bold">
-                <span className="text-[#00f0ff]">&lt;</span>
+                <span className="text-[#00f0ff]">{'<'}</span>
                 <span className="text-white">Dev</span>
-                <span className="text-[#ff00ff]">/&gt;</span>
+                <span className="text-[#ff00ff]">/{'>'}</span>
               </span>
             </motion.a>
 
@@ -72,10 +71,7 @@ const Navbar = () => {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.href);
-                  }}
+                  onClick={(e) => { e.preventDefault(); scrollToSection(link.href); }}
                   className="relative px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors group"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -91,7 +87,7 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Social Links & CTA */}
+            {/* Social Links, Language Switcher & CTA */}
             <div className="hidden md:flex items-center gap-4">
               <div className="flex items-center gap-2">
                 <motion.a
@@ -115,17 +111,26 @@ const Navbar = () => {
                   <Linkedin className="w-4 h-4" />
                 </motion.a>
               </div>
+              
+              {/* Language Switcher */}
+              <motion.button
+                onClick={toggleLanguage}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-[#00f0ff] hover:neon-border-cyan transition-all"
+                aria-label="Change language"
+              >
+                <Globe className="w-5 h-5" />
+              </motion.button>
+
               <motion.a
                 href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection('#contact');
-                }}
+                onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }}
                 className="px-5 py-2.5 rounded-full font-mono text-sm font-medium bg-gradient-to-r from-[#00f0ff] to-[#00ff88] text-[#0a0a0f] hover:shadow-[0_0_20px_rgba(0,240,255,0.5)] transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Hablemos
+                {t('common.cta.letsTalk')}
               </motion.a>
             </div>
 
@@ -158,10 +163,7 @@ const Navbar = () => {
                   <motion.a
                     key={link.name}
                     href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(link.href);
-                    }}
+                    onClick={(e) => { e.preventDefault(); scrollToSection(link.href); }}
                     className="px-4 py-4 text-2xl font-medium text-gray-300 hover:text-[#00f0ff] border-b border-white/10 transition-colors"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -201,13 +203,10 @@ const Navbar = () => {
                 </div>
                 <motion.a
                   href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection('#contact');
-                  }}
+                  onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }}
                   className="w-full py-4 rounded-xl font-mono text-lg font-medium bg-gradient-to-r from-[#00f0ff] to-[#00ff88] text-[#0a0a0f] text-center block"
                 >
-                  Contactar
+                  {t('common.cta.contactMe')}
                 </motion.a>
               </div>
             </div>

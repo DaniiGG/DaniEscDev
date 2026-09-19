@@ -1,0 +1,161 @@
+{
+  "common": {
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "projects": "Projects",
+      "skills": "Skills",
+      "contact": "Contact"
+    },
+    "cta": {
+      "letsTalk": "Let's Talk",
+      "contactMe": "Contact Me",
+      "viewProjects": "View Projects",
+      "viewMoreGitHub": "View more on GitHub",
+      "sendMessage": "Send Message",
+      "sending": "Sending...",
+      "sent": "Message Sent!"
+    },
+    "status": {
+      "available": "Available for projects",
+      "freelance": "Available for freelance",
+      "collaborations": "Open to collaborations",
+      "responseTime": "Response in <24h",
+      "inProcess": "In Progress",
+      "featured": "Featured"
+    },
+    "footer": {
+      "madeWith": "Made with",
+      "andCoffee": "and lots of coffee",
+      "backToTop": "Back to top",
+      "rights": "© {year} {name}."
+    },
+    "filter": {
+      "all": "All",
+      "featured": "Featured",
+      "inProcess": "In Progress"
+    },
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "placeholder": {
+        "name": "Your name",
+        "email": "your@email.com",
+        "message": "Tell me about your project..."
+      }
+    },
+    "form": {
+      "note": "* I respond within 24 hours"
+    },
+    "scroll": "Scroll"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "roles": [
+      "Full Stack Developer",
+      "React Specialist",
+      "Cloud Architect",
+      "UI/UX Enthusiast"
+    ],
+    "description": "{subtitle}. I transform ideas into extraordinary digital experiences with clean code and cutting-edge technology.",
+    "extraordinary": "extraordinary",
+    "cuttingEdge": "cutting-edge technology",
+    "terminal": {
+      "comment": "// Developer Profile",
+      "const": "const",
+      "developer": "developer",
+      "equals": "=",
+      "braceOpen": "{",
+      "name": "name",
+      "role": "role",
+      "location": "location",
+      "skills": "skills",
+      "available": "available",
+      "colon": ":",
+      "comma": ",",
+      "bracketOpen": "[",
+      "bracketClose": "]",
+      "braceClose": "}",
+      "semicolon": ";",
+      "ready": "▶ Ready to build amazing things...",
+      "true": "true"
+    }
+  },
+  "about": {
+    "sectionTitle": "About <span className=\"gradient\">Me</span>",
+    "description": "Learn about my story, passion for code, and professional experience",
+    "experienceTitle": "Professional Experience",
+    "philosophy": {
+      "comment": "/** My code philosophy */",
+      "code": "const philosophy = \"Clean code, happy user\";",
+      "approach": "const approach = \"First solve, then optimize\";",
+      "learning": "const learning = Infinity;"
+    },
+    "funFacts": {
+      "coffee": "Coffees/day",
+      "projects": "Projects",
+      "passion": "Passion"
+    }
+  },
+  "projects": {
+    "sectionTitle": "My <span className=\"gradient\">Projects</span>",
+    "description": "A selection of projects demonstrating my passion for creating innovative solutions",
+    "filterLabel": "Filter"
+  },
+  "skills": {
+    "sectionTitle": "Tech <span className=\"gradient\">Stack</span>",
+    "description": "Technologies and tools I master to create exceptional solutions",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "devops": "DevOps"
+    },
+    "categoryDescriptions": {
+      "frontend": "Modern and responsive interfaces",
+      "backend": "Robust and scalable APIs",
+      "devops": "Infrastructure and automation"
+    },
+    "learning": "// Always learning new technologies",
+    "skillsCount": "skills"
+  },
+  "contact": {
+    "sectionTitle": "Let's Talk About Your <span className=\"gradient\">Project</span>",
+    "description": "Have an amazing idea? I'd love to hear it and help you make it a reality",
+    "contactInfo": {
+      "email": "Email",
+      "location": "Location"
+    },
+    "socialTitle": "// Follow me on",
+    "statusTitle": "$ current_status",
+    "formTitle": "Send me a message"
+  },
+  "seo": {
+    "title": "Portfolio — DaniEscDev",
+    "description": "DaniEscDev web development portfolio.",
+    "ogLocale": "en_US",
+    "geoRegion": "US",
+    "geoPlacename": "Granada",
+    "businessName": "DaniEscDev — Web Development",
+    "telephone": "+34 640 294 034",
+    "addressLocality": "Granada",
+    "addressRegion": "Andalucía",
+    "addressCountry": "ES",
+    "areaServed": "Worldwide",
+    "priceRange": "$$"
+  },
+  "profile": {
+    "name": "Daniel Escobar",
+    "title": "Full Stack Developer",
+    "subtitle": "Building the future, one line of code at a time",
+    "bio": "Passionate developer with 2+ years of experience creating innovative web applications. Specialized in React, Laravel.js, and cloud architectures. I love transforming complex ideas into elegant and scalable solutions.",
+    "location": "Granada, Spain",
+    "email": "daniescomoli@gmail.com"
+  },
+  "stats": {
+    "experience": "Years of Experience",
+    "projects": "Completed Projects",
+    "clients": "Satisfied Clients",
+    "codeLines": "Lines of Code"
+  }
+}
