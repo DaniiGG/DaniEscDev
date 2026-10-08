@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import SEO from '../SEO'
+import emailjs from '@emailjs/browser';
 
 const WHATSAPP_NUMBER = "34640294034";
 const WA = (msg) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
@@ -847,6 +848,49 @@ export default function Servicios() {
   const [openFaq, setOpenFaq] = useState(null);
   const [form, setForm] = useState({ nombre:"", telefono:"", mensaje:"" });
   const [sent, setSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('📤 Form submit:', form);
+    if (!form.nombre || !form.telefono) return;
+    
+    setIsSubmitting(true);
+    setSubmitError(null);
+    
+    try {
+      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      
+      console.log('🔑 Credentials:', { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY: PUBLIC_KEY?.slice(0,5)+'...' });
+      
+      if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+        throw new Error('Faltan credenciales de EmailJS en .env');
+      }
+      
+      const templateParams = {
+        from_name: form.nombre,
+        from_phone: form.telefono,
+        message: form.mensaje,
+        to_email: "daniescomoli@gmail.com"
+      };
+      
+      console.log('📧 Sending params:', templateParams);
+      const result = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      console.log('✅ EmailJS result:', result);
+      
+      setIsSubmitting(false);
+      setSent(true);
+      setForm({ nombre: "", telefono: "", mensaje: "" });
+    } catch (error) {
+      console.error('❌ EmailJS error:', error);
+      setIsSubmitting(false);
+      setSubmitError(error.message || 'Error al enviar. Inténtalo de nuevo.');
+      setTimeout(() => setSubmitError(null), 8000);
+    }
+  };
 
   return (
     <>
@@ -1053,20 +1097,29 @@ export default function Servicios() {
               </div>
             ) : (
               <div className="cform">
-                <div>
-                  <label className="flabel">Tu nombre</label>
-                  <input className="finput" type="text" placeholder="Ana García" value={form.nombre} onChange={e=>setForm({...form,nombre:e.target.value})}/>
-                </div>
-                <div>
-                  <label className="flabel">Tu número de WhatsApp</label>
-                  <input className="finput" type="tel" placeholder="600 000 000" value={form.telefono} onChange={e=>setForm({...form,telefono:e.target.value})}/>
-                </div>
-                <div>
-                  <label className="flabel">¿Qué necesitas?</label>
-                  <textarea className="finput" rows={4} style={{resize:"vertical"}} placeholder="Tengo una panadería y quiero empezar a vender online..." value={form.mensaje} onChange={e=>setForm({...form,mensaje:e.target.value})}/>
-                </div>
-                <button className="fbtn" onClick={()=>{ if(form.nombre&&form.telefono) setSent(true); }}>Enviar y recibir presupuesto →</button>
-                <p className="calt">O escríbeme por WhatsApp: <a href={WA("Hola Dani, quiero información sobre tu web.")} target="_blank" rel="noopener noreferrer"><strong>+34 640 294 034</strong></a></p>
+                {submitError && (
+                  <div style={{padding:"12px 16px",background:"rgba(239,68,68,.15)",border:"1px solid rgba(239,68,68,.3)",borderRadius:12,color:"#ef4444",fontSize:14,marginBottom:16}}>
+                    {submitError}
+                  </div>
+                )}
+                <form onSubmit={handleSubmit}>
+                  <div>
+                    <label className="flabel">Tu nombre</label>
+                    <input className="finput" type="text" placeholder="Ana García" value={form.nombre} onChange={e=>setForm({...form,nombre:e.target.value})}/>
+                  </div>
+                  <div>
+                    <label className="flabel">Tu número de WhatsApp</label>
+                    <input className="finput" type="tel" placeholder="600 000 000" value={form.telefono} onChange={e=>setForm({...form,telefono:e.target.value})}/>
+                  </div>
+                  <div>
+                    <label className="flabel">¿Qué necesitas?</label>
+                    <textarea className="finput" rows={4} style={{resize:"vertical"}} placeholder="Tengo una panadería y quiero empezar a vender online..." value={form.mensaje} onChange={e=>setForm({...form,mensaje:e.target.value})}/>
+                  </div>
+                  <button type="submit" className="fbtn" disabled={isSubmitting}>
+                    {isSubmitting ? 'Enviando...' : 'Enviar y recibir presupuesto →'}
+                  </button>
+                  <p className="calt">O escríbeme por WhatsApp: <a href={WA("Hola Dani, quiero información sobre tu web.")} target="_blank" rel="noopener noreferrer"><strong>+34 640 294 034</strong></a></p>
+                </form>
               </div>
             )}
           </div>

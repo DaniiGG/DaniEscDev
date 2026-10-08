@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, MapPin, Github, Linkedin, Twitter, MessageSquare, Sparkles, CheckCircle } from 'lucide-react';
+import { Send, Mail, MapPin, Github, Linkedin, Twitter, MessageSquare, Sparkles, CheckCircle, AlertCircle } from 'lucide-react';
 import { profileData } from '../data/mockData';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,27 +12,49 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
+    setSubmitError(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', message: '' });
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
+    try {
+      const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      
+      if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+        throw new Error('Faltan credenciales de EmailJS en .env');
+      }
+      
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: profileData.email
+      };
+      
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+      
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (error) {
+      setIsSubmitting(false);
+      setSubmitError(error.message || 'Error al enviar el mensaje. Inténtalo de nuevo.');
+      setTimeout(() => setSubmitError(null), 8000);
+    }
   };
 
   const socialLinks = [
@@ -222,6 +245,17 @@ const Contact = () => {
                   </div>
 
                   {/* Submit Button */}
+                  {submitError && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/20 border border-red-500/30 text-red-400 text-sm font-mono"
+                    >
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                      {submitError}
+                    </motion.div>
+                  )}
+                  
                   <motion.button
                     type="submit"
                     disabled={isSubmitting || isSubmitted}
